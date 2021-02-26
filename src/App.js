@@ -1,9 +1,15 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-import Error from './components/Error';
-import Home from './components/Home';
 import { DASHBOARD, HOME, NOT_FOUND } from './constants/routes';
-import Dashboard from './container/Dashboard';
+import './App.css';
+// import Error from './components/Error';
+// import Home from './components/Home';
+// import Dashboard from './container/Dashboard';
+import Spinner from './utils/Spinner';
+
+const Home = lazy(() => import('./components/Home'));
+const Dashboard = lazy(() => import('./container/Dashboard'));
+const Error = lazy(() => import('./components/Error'));
 
 function App() {
   return (
@@ -11,13 +17,19 @@ function App() {
       <Router>
         <Switch>
           <Route exact path={HOME}>
-            <Home />
+            <Suspense fallback={Spinner()}>
+              <Home />
+            </Suspense>
           </Route>
           <Route path={DASHBOARD}>
-            <Dashboard />
+            <Suspense fallback={Spinner()}>
+              <Dashboard />
+            </Suspense>
           </Route>
           <Route path={NOT_FOUND}>
-            <Error />
+            <Suspense fallback={Spinner()}>
+              <Error />
+            </Suspense>
           </Route>
 
         </Switch>
