@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.7.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.0"
   },
@@ -17,10 +18,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "stylelint": "npx stylelint \"**/*.{css,scss}\"",
-		"lint": "npx eslint .",
-		"stylelintfix": "npx stylelint --fix \"**/*.{css,scss}\"",
-		"eslintfix": "npx eslint --fix .",
-		"lintfix": "npm run stylelintfix && npm run eslintfix"
+    "lint": "npx eslint .",
+    "stylelintfix": "npx stylelint --fix \"**/*.{css,scss}\"",
+    "eslintfix": "npx eslint --fix .",
+    "lintfix": "npm run stylelintfix && npm run eslintfix"
   },
   "eslintConfig": {
     "extends": [

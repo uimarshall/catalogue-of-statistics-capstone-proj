@@ -1,3 +1,6 @@
+Get top users by location,
+click on a user to get details.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
