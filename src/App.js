@@ -6,6 +6,7 @@ import './App.css';
 // import Home from './components/Home';
 // import Dashboard from './container/Dashboard';
 import Spinner from './utils/Spinner';
+import Navbar from './components/Navbar';
 
 const Home = lazy(() => import('./components/Home'));
 const Dashboard = lazy(() => import('./container/Dashboard'));
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <Switch>
           <Route exact path={HOME}>
             <Suspense fallback={Spinner()}>
