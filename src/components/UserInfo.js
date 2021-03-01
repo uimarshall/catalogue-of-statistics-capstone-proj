@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 import UserInfoItems from './UserInfoItems';
+import '../assets/css/UserInfo.css'
 
 const UserInfo = ({ githubuser }) => {
   const {
