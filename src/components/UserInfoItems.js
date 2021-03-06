@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function UserInfoItems({
   icon, label, value, color,
@@ -16,5 +17,13 @@ function UserInfoItems({
     </div>
   );
 }
+
+UserInfoItems.propTypes = {
+
+  icon: PropTypes.instanceOf(Object).isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.instanceOf(Object).isRequired,
+  color: PropTypes.string.isRequired,
+};
 
 export default UserInfoItems;

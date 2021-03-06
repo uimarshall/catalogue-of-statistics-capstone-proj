@@ -17,7 +17,10 @@ const githubUserReducer = (state = initialState, action) => {
     case USER_FETCH_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        data: {
+          ...state.data,
+          [action.userId]: action.payload,
+        },
         loading: false,
 
         errMsg: '',

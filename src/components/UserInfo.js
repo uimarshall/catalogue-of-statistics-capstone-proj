@@ -1,14 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
+/* eslint-disable camelcase */
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { GoRepo, GoGist } from 'react-icons/go';
 import { FiUsers, FiUserPlus } from 'react-icons/fi';
 import UserInfoItems from './UserInfoItems';
-import '../assets/css/UserInfo.css'
+import '../assets/css/UserInfo.css';
+import { getGithubUsers } from '../actions/githubUserAction';
 
-const UserInfo = ({ githubuser }) => {
+const UserInfo = ({ match }) => {
+  const userId = match.params.user;
+  const githubUser = useSelector(state => state.githubuser);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getGithubUsers(userId));
+  }, []);
+  console.log(githubUser);
   const {
     public_repos, followers, following, public_gists,
-  } = githubuser;
+  } = githubUser;
 
   const items = [
     {
@@ -49,13 +61,34 @@ const UserInfo = ({ githubuser }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  githubuser: state.githubuser,
+UserInfo.propTypes = {
 
-});
-
-const mapDispatchToProps = {
-
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      user: PropTypes.string.isRequired,
+    }),
+  }),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+UserInfo.defaultProps = {
+  match: () => {},
+};
+
+// const mapStateToProps = state => ({
+//   githubuser: state.githubuser,
+
+// });
+
+// const mapDispatchToProps = dispatch => ({
+//   getGithubUser: wesbos => {
+//     dispatch(getGithubUsers(wesbos));
+//   },
+// });
+
+// UserInfo.propTypes = {
+
+//   githubuser: PropTypes.instanceOf(Object).isRequired,
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);
+export default UserInfo;
